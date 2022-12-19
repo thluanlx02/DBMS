@@ -6,6 +6,7 @@ import 'antd/dist/reset.css';
 
 import AddSupplier from "./components/supplier";
 import Product from "./components/product";
+import Customer from "./components/customer";
 
 class App extends Component {
   render() {
@@ -27,7 +28,11 @@ class App extends Component {
                Product
               </Link>
             </li>
-           
+            <li className="nav-item">
+              <Link to={"/customer"} className="nav-link">
+               Customer
+              </Link>
+            </li>
           </div>
         </nav>
 
@@ -36,6 +41,7 @@ class App extends Component {
 
             <Route exact path="/supplier" component={AddSupplier} />
             <Route exact path="/product" component={Product} />
+            <Route exact path="/customer" component={Customer} />
            
           </Switch>
         </div>

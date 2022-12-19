@@ -24,3 +24,18 @@ export interface IProductDataTable {
   price: number,
   supplierId: number,
 }
+
+export interface ICustomerData {
+  id?: any | null,
+  name: string,
+  gender: string,
+  phone: string,
+}
+
+export interface ICustomerDataTable {
+  key: number,
+  name: string,
+  gender: string,
+  phone: string,
+}
+
