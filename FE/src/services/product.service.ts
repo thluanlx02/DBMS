@@ -10,6 +10,10 @@ class ProductService {
         return http.get(`/products/${id}`);
     }
 
+    findAllNumberProductBySupplier() {
+        return http.get("/products/findAllNumberProductBySupplier");
+    }
+
     create(data: IProductData) {
         return http.post("/products", data);
     }

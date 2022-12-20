@@ -1,5 +1,6 @@
 const db = require("../models");
 const Product = db.products;
+const Supplier = db.suppliers;
 const Op = db.Sequelize.Op;
 
 // Create and Save a new Product
@@ -16,6 +17,7 @@ exports.create = (req, res) => {
     const product = {
         name: req.body.name,
         price: req.body.price,
+        supplier_id: req.body.supplierId,
     };
 
     // Save Product in the database
@@ -72,5 +74,23 @@ exports.delete = (req, res) => {
             });
         });
 }
+
+//Get all number product by supplier
+exports.findAllNumberProductBySupplier = (req, res) => {
+    Product.findAll({
+        attributes: ['supplier_id', [db.sequelize.fn('count', db.sequelize.col('supplier_id')), 'total']],
+        group: ['supplier_id']
+    })
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving products."
+            });
+        });
+}
+
 
 

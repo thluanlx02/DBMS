@@ -10,6 +10,10 @@ class CustormerDataService {
         return http.get<ICustomerData>(`/customers/${id}`);
     }
 
+    getByPhone(phone: string) { 
+        return http.get<ICustomerData>(`/customers/phone/${phone}`);
+    }
+
     create(data: ICustomerData) {
         return http.post<ICustomerData>("/customers", data);
     }

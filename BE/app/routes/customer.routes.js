@@ -8,6 +8,9 @@ module.exports = app => {
     // Delete a Customer with the specified id in the request
     router.delete("/customers/:id", customers.delete);
 
+    //Find a single Customer with an phone
+    router.get("/customers/phone/:phone", customers.findByPhone);
+
     
 
     app.use("/api", router);

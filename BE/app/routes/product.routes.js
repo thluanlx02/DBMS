@@ -16,6 +16,8 @@ module.exports = app => {
     router.delete("/products/:id", products.delete);
     // // Create a new Product
     // router.delete("/products", products.deleteAll);
+
+    router.get("/products/findAllNumberProductBySupplier", products.findAllNumberProductBySupplier);
     app.use("/api", router);
     
 }
