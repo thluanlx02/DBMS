@@ -71,8 +71,7 @@ const Customer = () => {
     const getAllCustomer = () => {
         CustormerDataService.getAll()
             .then((response: any) => {
-        
-                
+                console.log(response.data);
                 setCustomers([]);
                 response.data.forEach((element: ICustomerData, idx: number) => {
                     const product: ICustomerDataTable = {

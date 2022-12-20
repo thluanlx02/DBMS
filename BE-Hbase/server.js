@@ -17,7 +17,7 @@ app.use(express.json());  /* bodyParser.json() is deprecated */
 app.use(express.urlencoded({ extended: true }));   /* bodyParser.urlencoded() is deprecated */
 
 const db = require("./app/models");
-db.sequelize.sync();
+
 // // drop the table if it already exists
 // db.sequelize.sync({ force: true }).then(() => {
 //   console.log("Drop and re-sync db.");
@@ -31,12 +31,11 @@ db.sequelize.sync();
 require("./app/routes/supplier.routes")(app);
 require("./app/routes/product.routes")(app);
 require("./app/routes/customer.routes")(app);
-require("./app/routes/order.routes")(app);
 
 
 
 // set port, listen for requests
-const PORT = process.env.PORT || 8083;
+const PORT = process.env.PORT || 8082;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
