@@ -39,3 +39,26 @@ export interface ICustomerDataTable {
   phone: string,
 }
 
+export interface IOrderData {
+  id?: any | null,
+  customerId: number,
+
+  total: number,
+  createAt: string,
+  orderItems: IItemOrderData[],
+}
+
+export interface IOrderDataTable {
+  key: number,
+  orderId: number,
+  customerId: number,
+  total: number,
+  orderDate: string,
+}
+
+export interface IItemOrderData {
+  id?: any | null,
+  productId: number,
+  quantity: number,
+}
+

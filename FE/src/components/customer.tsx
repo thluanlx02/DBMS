@@ -1,15 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Form, Input, Button, Table, Modal, Divider, Space,  message, Select } from 'antd';
-import { ICustomerData,  ICustomerDataTable } from "../types/service.type";
+import { Form, Input, Button, Table, Modal, Divider, Space, message, Select } from 'antd';
+import { ICustomerData, ICustomerDataTable } from "../types/service.type";
 
 
 import CustormerDataService from "../services/customer.service";
-
-
-
 import type { ColumnsType } from 'antd/es/table';
-
-import { UserOutlined,PhoneOutlined } from '@ant-design/icons';
+import { UserOutlined, PhoneOutlined } from '@ant-design/icons';
 const { Option } = Select;
 
 const Customer = () => {
@@ -39,6 +35,7 @@ const Customer = () => {
             key: 'action',
             width: 100,
             render: (_, record) => (
+                
                 <Space size="small">
                     <button style={{ border: 'none', backgroundColor: 'red', color: 'white' }}
                         onClick={() => {
@@ -58,15 +55,7 @@ const Customer = () => {
         },
 
     ]
-    useEffect(() => {
-        CustormerDataService.getAll()
-            .then((response: any) => {
-                setCustomers(response.data);
-            })
-            .catch((e: Error) => {
-                console.log(e);
-            });
-    }, []);
+
 
     const showModal = () => {
         setIsModalOpen(true);
@@ -82,14 +71,17 @@ const Customer = () => {
     const getAllCustomer = () => {
         CustormerDataService.getAll()
             .then((response: any) => {
+        
+                
                 setCustomers([]);
-                response.data.forEach((element: ICustomerData) => {
+                response.data.forEach((element: ICustomerData, idx: number) => {
                     const product: ICustomerDataTable = {
-                        key: element.id,
+                        key: idx,
                         name: element.name,
                         gender: element.gender,
                         phone: element.phone,
                     }
+
                     setCustomers((prev) => [...prev, product]);
                 });
             })
@@ -139,15 +131,15 @@ const Customer = () => {
                             placeholder="Gender"
                             allowClear
                         >
-                            <Option value="male">Male</Option>
-                            <Option value="female">Female</Option>
+                            <Option key='male' value="male">Male</Option>
+                            <Option key="female" value="female">Female</Option>
                         </Select>
                     </Form.Item>
                     <Form.Item
                         name="phone"
                         rules={[{ required: true, message: 'Please input phone!' }]}
                     >
-                        <Input prefix={<PhoneOutlined  className="site-form-item-icon" />} placeholder="Phone" />
+                        <Input prefix={<PhoneOutlined className="site-form-item-icon" />} placeholder="Phone" />
                     </Form.Item>
 
                     <Button type="primary" htmlType="submit" className="add-supplier-form-button">
@@ -160,7 +152,11 @@ const Customer = () => {
                 Add Customer
             </Button>
             <Divider />
-            <Table dataSource={customers} columns={collums} pagination={{ defaultPageSize: 5, showSizeChanger: true, pageSizeOptions: ['5', '10', '20'] }} />
+            <Table
+                dataSource={customers}
+                columns={collums}
+                pagination={{ defaultPageSize: 5, showSizeChanger: true, pageSizeOptions: ['5', '10', '20'] }} 
+            />
         </div>
     );
 };
