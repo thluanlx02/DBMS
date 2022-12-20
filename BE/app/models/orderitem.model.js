@@ -4,11 +4,24 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.INTEGER,
         allowNull: false,
         },
-        price: {
-        type: Sequelize.BIGINT,
-        allowNull: false,
+        createdAt: {
+            field: 'created_at',
+            type: Sequelize.DATE,
         },
-    });
+    },
+ 
+    {indexes: [
+        {
+            unique: true,
+            fields: ['order_id', 'product_id']
+        },
+        {
+            unique: false,
+            fields : ['created_at'],
+            using: 'BRIN'
+        }
+    ]}
+    );
     OrderItem.belongsTo(
         sequelize.models.order,
         {

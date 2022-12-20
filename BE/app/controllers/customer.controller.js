@@ -20,7 +20,8 @@ exports.create = (req, res) => {
     };
 
     // Save Customer in the database
-    Customer.create(customer)
+    console.log("Customer: " + customer);
+     Customer.create(customer)
         .then(data => {
             res.send(data);
         })
@@ -30,6 +31,8 @@ exports.create = (req, res) => {
                     err.message || "Some error occurred while creating the Customer."
             });
         });
+
+       
 };
 
 // Retrieve all Customers from the database.
@@ -74,3 +77,17 @@ exports.delete = (req, res) => {
         });
 }
 
+//Get Customer by phone number
+exports.findByPhone = (req, res) => {
+    const phone = req.params.phone;
+    Customer.findAll({ where: { phone: phone } })
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving customers."
+            });
+        });
+};

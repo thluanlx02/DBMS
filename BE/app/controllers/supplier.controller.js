@@ -73,3 +73,18 @@ exports.delete = (req, res) => {
             });
         });
 }
+
+//Get supplier by id
+exports.findOne = (req, res) => {
+    const id = req.params.id;
+
+    Supplier.findByPk(id)
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: "Error retrieving Supplier with id=" + id
+            });
+        });
+}

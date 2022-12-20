@@ -31,6 +31,7 @@ db.sequelize.sync();
 require("./app/routes/supplier.routes")(app);
 require("./app/routes/product.routes")(app);
 require("./app/routes/customer.routes")(app);
+require("./app/routes/order.routes")(app);
 
 
 
