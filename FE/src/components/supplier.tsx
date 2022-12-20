@@ -65,6 +65,7 @@ const AddSupplier = () => {
         SupplierService.getAll()
             .then((response: any) => {
                 setSuppliers([]);
+                console.log(response.data);
                 response.data.forEach((element: ISupplierData) => {
                     const supplier: ISupplierDataTable = {
                         key: element.id,
